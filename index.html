@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HappyGSR - Pusat Laptop Grosir & Solusi Bisnis Indonesia</title>
+    <meta name="description" content="Dapatkan laptop baru & second Grade A dengan harga grosir terbaik. Layanan pemasangan CCTV, pembuatan website, dan investasi properti terpercaya bersama PT GSR Bisnis Indonesia.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="announcement-bar">
+        <div class="container announcement-content">
+            <div class="announcement-news">
+                <span class="badge">PROMO HARI INI</span>
+                <div class="news-ticker">
+                    <span class="ticker-item"><i class="fa-solid fa-fire"></i> Diskon Spesial s.d 35% untuk Laptop Lenovo ThinkPad & Dell Latitude!</span>
+                    <span class="ticker-item"><i class="fa-solid fa-gift"></i> Gunakan kode voucher <strong class="voucher-code">GSRWEB</strong> untuk potongan tambahan!</span>
+                    <span class="ticker-item"><i class="fa-solid fa-hand-holding-dollar"></i> Komisi Mitra terbayar bulan ini: Rp8.124.092! Coba GRATIS sekarang!</span>
+                </div>
+            </div>
+            <div class="top-contacts">
+                <a href="tel:02123095662"><i class="fa-solid fa-phone"></i> 021-23095662</a>
+                <a href="https://wa.me/6282240299789" target="_blank"><i class="fa-brands fa-whatsapp text-success"></i> 0822-4029-9789</a>
+                <a href="mailto:admin@happygsr.com"><i class="fa-solid fa-envelope"></i> admin@happygsr.com</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="main-header">
+        <div class="container header-container">
+            <!-- Brand Logo -->
+            <a href="#" class="logo" onclick="switchTab('home')">
+                <span class="logo-accent">Happy</span>GSR
+                <span class="logo-tagline">Business Indonesia</span>
+            </a>
+
+            <!-- Search Bar -->
+            <div class="header-search">
+                <form onsubmit="handleSearch(event)">
+                    <div class="search-input-group">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" placeholder="Cari laptop, paket CCTV, website, atau properti..." id="searchInput">
+                        <button type="submit" class="search-btn">Cari</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Action Buttons (Cart, Member Area) -->
+            <div class="header-actions">
+                <div class="cart-widget" onclick="toggleCartDropdown()">
+                    <div class="cart-icon-wrapper">
+                        <i class="fa-solid fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </div>
+                    <div class="cart-info">
+                        <span class="cart-label">Keranjang</span>
+                        <span class="cart-total" id="cartTotalHeader">Rp0</span>
+                    </div>
+                    
+                    <!-- Cart Dropdown -->
+                    <div class="cart-dropdown" id="cartDropdown">
+                        <div class="cart-dropdown-header">
+                            <h4>Keranjang Belanja</h4>
+                            <span class="close-dropdown"><i class="fa-solid fa-xmark"></i></span>
+                        </div>
+                        <div class="cart-dropdown-items" id="cartItemsList">
+                            <div class="empty-cart-message">
+                                <i class="fa-solid fa-basket-shopping"></i>
+                                <p>Keranjang Anda kosong</p>
+                            </div>
+                        </div>
+                        <div class="cart-dropdown-footer">
+                            <div class="cart-subtotal">
+                                <span>Subtotal:</span>
+                                <strong id="cartSubtotal">Rp0</strong>
+                            </div>
+                            <button class="btn btn-primary btn-block" onclick="switchTab('cart')">Lihat Keranjang & Checkout</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="member-profile-btn" onclick="toggleMemberDropdown()">
+                    <div class="avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="member-info">
+                        <span class="member-greet">Halo, Tamu!</span>
+                        <span class="member-action-text">Akun GSR <i class="fa-solid fa-chevron-down"></i></span>
+                    </div>
+
+                    <!-- Member Dropdown -->
+                    <div class="member-dropdown" id="memberDropdown">
+                        <div class="member-dropdown-header">
+                            <div class="avatar-large"><i class="fa-solid fa-user"></i></div>
+                            <p class="user-name">Guest Member</p>
+                            <span class="badge badge-outline">Non-Mitra</span>
+                        </div>
+                        <ul class="member-dropdown-menu">
+                            <li><a href="#" onclick="switchTab('member')"><i class="fa-solid fa-right-to-bracket"></i> Masuk Akun</a></li>
+                            <li><a href="#" onclick="switchTab('member', 'register')"><i class="fa-solid fa-user-plus"></i> Daftar Gratis</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a href="#" onclick="switchTab('member', 'reseller')"><i class="fa-solid fa-users"></i> Join Reseller</a></li>
+                            <li><a href="#" onclick="switchTab('member', 'affiliate')"><i class="fa-solid fa-sack-dollar"></i> Bonus Affiliasi</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Navigation Bar -->
+    <nav class="navigation-bar">
+        <div class="container nav-container">
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fa-solid fa-bars"></i> Menu Navigasi
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li class="active" data-tab="home"><a href="#" onclick="switchTab('home')"><i class="fa-solid fa-house"></i> Beranda</a></li>
+                <li data-tab="catalog" class="has-submenu">
+                    <a href="#" onclick="switchTab('catalog')"><i class="fa-solid fa-laptop"></i> Katalog Layanan <i class="fa-solid fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="#" onclick="filterCatalog('laptop')">Laptop Grosir</a></li>
+                        <li><a href="#" onclick="filterCatalog('cctv')">Paket CCTV</a></li>
+                        <li><a href="#" onclick="filterCatalog('website')">Website & Aplikasi POS</a></li>
+                        <li><a href="#" onclick="filterCatalog('property')">GSR Property Investment</a></li>
+                    </ul>
+                </li>
+                <li data-tab="member" class="has-submenu">
+                    <a href="#" onclick="switchTab('member')"><i class="fa-solid fa-users-gear"></i> Kemitraan GSR <i class="fa-solid fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="#" onclick="switchTab('member', 'register')">Daftar Gratis</a></li>
+                        <li><a href="#" onclick="switchTab('member', 'reseller')">Join Reseller</a></li>
+                        <li><a href="#" onclick="switchTab('member', 'affiliate')">Bonus Affiliasi</a></li>
+                        <li><a href="#" onclick="switchTab('tools', 'ongkir')">Cek Ongkir</a></li>
+                    </ul>
+                </li>
+                <li data-tab="orders" class="has-submenu">
+                    <a href="#" onclick="switchTab('orders')"><i class="fa-solid fa-receipt"></i> Pesanan <i class="fa-solid fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="#" onclick="switchTab('orders', 'tracking')">Cek Resi</a></li>
+                        <li><a href="#" onclick="switchTab('orders', 'payment')">Konfirmasi Pembayaran</a></li>
+                        <li><a href="#" onclick="switchTab('orders', 'refund')">Kebijakan Pengembalian</a></li>
+                    </ul>
+                </li>
+                <li data-tab="token"><a href="#" onclick="switchTab('token')"><i class="fa-solid fa-coins"></i> HappyGSR Token</a></li>
+                <li data-tab="about"><a href="#" onclick="switchTab('about')"><i class="fa-solid fa-circle-info"></i> Tentang Kami</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="content-wrapper">
+        
+        <!-- ================= TAB: HOME ================= -->
+        <section id="tab-home" class="tab-pane active">
+            <!-- Hero Slider / Banner Section -->
+            <div class="hero-section">
+                <div class="hero-slider" id="heroSlider">
+                    <div class="slide active" style="background-image: linear-gradient(135deg, rgba(0, 85, 170, 0.95), rgba(30, 115, 190, 0.85)), url('https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?q=80&w=1200');">
+                        <div class="slide-content">
+                            <span class="slide-tag">PT GSR BISNIS INDONESIA</span>
+                            <h2>Laptop Grade A &amp; Solusi Properti Terbaik</h2>
+                            <p>Distributor laptop baru dan ex-kantor berkualitas grosir, pembuatan website profesional, CCTV, serta peluang investasi properti cerdas di satu platform terpercaya.</p>
+                            <div class="slide-actions">
+                                <a href="#" class="btn btn-primary btn-large" onclick="switchTab('catalog')"><i class="fa-solid fa-basket-shopping"></i> Jelajahi Produk</a>
+                                <a href="#" class="btn btn-secondary btn-large" onclick="switchTab('member', 'register')">Join Kemitraan <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Intro / Welcome Section -->
+            <div class="section-welcome container">
+                <div class="welcome-grid">
+                    <div class="welcome-text">
+                        <div class="section-header">
+                            <span class="subtitle">MITRA PERTUMBUHAN DIGITAL &amp; ASET ANDA</span>
+                            <h3>Solusi Bisnis Terintegrasi untuk Indonesia Maju</h3>
+                        </div>
+                        <p><strong>PT GSR BISNIS INDONESIA</strong> hadir sebagai mitra terpercaya Anda dalam mengembangkan bisnis di era modern. Berlokasi strategis di Jakarta Barat, kami berkomitmen untuk menyediakan solusi teknologi terjangkau serta investasi properti inovatif untuk mendukung kesuksesan finansial Anda secara berkelanjutan.</p>
+                        <p>Kami percaya teknologi berkualitas tinggi tidak harus mahal, dan investasi masa depan harus dimulai dengan langkah yang cerdas dan transparan.</p>
+                        
+                        <div class="welcome-features">
+                            <div class="feature-item-mini">
+                                <div class="icon-wrap"><i class="fa-solid fa-laptop-code"></i></div>
+                                <div>
+                                    <h4>Teknologi Terjangkau</h4>
+                                    <p>Laptop Grade A, Web Dev, POS, &amp; CCTV</p>
+                                </div>
+                            </div>
+                            <div class="feature-item-mini">
+                                <div class="icon-wrap"><i class="fa-solid fa-building-circle-check"></i></div>
+                                <div>
+                                    <h4>Investasi Properti</h4>
+                                    <p>Beli-Sewa-Jual properti di bawah harga pasar</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="welcome-visual">
+                        <div class="experience-card">
+                            <span class="number">100%</span>
+                            <span class="label">Produk Teruji &amp; Bergaransi</span>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=600" alt="Bisnis Modern" class="img-responsive rounded shadow">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Value Proposition: 4 Alasan Cerdas -->
+            <div class="section-gray">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <span class="subtitle">MENGAPA KAMI?</span>
+                        <h3>4 Keunggulan Utama HappyGSR</h3>
+                        <p class="header-description">Kami tidak hanya sekadar menjual produk, melainkan membangun kemitraan jangka panjang yang menguntungkan.</p>
+                    </div>
+
+                    <div class="why-grid">
+                        <!-- Card 1 -->
+                        <div class="why-card">
+                            <div class="why-icon-wrap bg-primary-soft">
+                                <i class="fa-solid fa-cubes"></i>
+                            </div>
+                            <h4>One-Stop Business Solution</h4>
+                            <p>Semua kebutuhan operasional bisnis Anda tersedia di satu tempat: laptop kerja, sistem kasir (POS), website promosi, CCTV keamanan, hingga investasi aset.</p>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="why-card">
+                            <div class="why-icon-wrap bg-orange-soft">
+                                <i class="fa-solid fa-tags"></i>
+                            </div>
+                            <h4>Pasti Harga Grosir Terbaik</h4>
+                            <p>Kami memotong rantai distribusi untuk menghadirkan laptop Grade A dan properti pilihan di bawah harga developer. Solusi cerdas maksimalkan budget Anda.</p>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="why-card">
+                            <div class="why-icon-wrap bg-success-soft">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <h4>Bergaransi &amp; Terpercaya</h4>
+                            <p>Didukung oleh tim profesional dengan layanan purna jual yang andal di Jakarta. Setiap produk melewati uji kualitas ketat (QC 21 poin) sebelum dikirim.</p>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="why-card">
+                            <div class="why-icon-wrap bg-purple-soft">
+                                <i class="fa-solid fa-arrow-up-right-dots"></i>
+                            </div>
+                            <h4>Investasi Masa Depan</h4>
+                            <p>Mulai bangun aset Anda dengan cepat. Dapatkan program referral, reseller, bonus komisi, hingga GSR Token yang memperluas nilai aset digital Anda.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Widget: Kemitraan & Commission Calculator -->
+            <div class="section-calculator">
+                <div class="container">
+                    <div class="calc-grid">
+                        <div class="calc-text">
+                            <span class="badge badge-accent">PROGRAM KEMITRAAN</span>
+                            <h3>Simulasi Penghasilan Tambahan bersama GSR</h3>
+                            <p>Bergabunglah dengan ribuan Reseller &amp; Affiliate HappyGSR. Bagikan tautan produk atau rekomendasikan laptop ke komunitas Anda, dapatkan komisi langsung hingga 10% per penjualan.</p>
+                            
+                            <ul class="benefit-list">
+                                <li><i class="fa-solid fa-circle-check"></i> Tanpa modal stok barang (Sistem Dropship)</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Dukungan materi promosi &amp; panduan gratis</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Pembayaran komisi cepat setiap bulan</li>
+                            </ul>
+                        </div>
+                        <div class="calc-box">
+                            <h4>Kalkulator Komisi Mitra</h4>
+                            
+                            <div class="form-group">
+                                <label for="targetSales">Jumlah Penjualan Laptop per Bulan:</label>
+                                <div class="range-slider-wrapper">
+                                    <input type="range" id="targetSales" min="1" max="50" value="5" class="slider-input" oninput="calculateCommission()">
+                                    <span class="range-value" id="targetSalesVal">5 Unit</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="avgPrice">Estimasi Harga Rata-rata per Laptop:</label>
+                                <select id="avgPrice" class="form-control" onchange="calculateCommission()">
+                                    <option value="2000000">Rp2.000.000 (Laptop Pelajar / Desain)</option>
+                                    <option value="3500000" selected>Rp3.500.000 (Laptop Gaming / Mid-range)</option>
+                                    <option value="5000000">Rp5.000.000 (Laptop Bisnis / SultanGSR)</option>
+                                </select>
+                            </div>
+
+                            <div class="calc-result-box">
+                                <span class="calc-result-label">Potensi Komisi Bulanan Anda:</span>
+                                <h3 class="calc-result-price" id="commissionOutput">Rp1.750.000</h3>
+                                <p class="calc-result-note">*Estimasi berdasarkan rata-rata komisi 10% bagi Mitra Aktif.</p>
+                            </div>
+
+                            <button class="btn btn-accent btn-block" onclick="switchTab('member', 'register')">Daftar Kemitraan Sekarang (GRATIS)</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Products Showcase -->
+            <div class="section-products container">
+                <div class="section-header-flex">
+                    <div>
+                        <span class="subtitle">TERLARIS &amp; TERBARU</span>
+                        <h3>Produk Pilihan Terbaik</h3>
+                    </div>
+                    <div class="filter-tabs">
+                        <button class="tab-btn active" onclick="filterHomeProducts('all')">Semua</button>
+                        <button class="tab-btn" onclick="filterHomeProducts('best')">Paling Laris</button>
+                        <button class="tab-btn" onclick="filterHomeProducts('promo')">Promo Hemat</button>
+                        <button class="tab-btn" onclick="filterHomeProducts('property')">Aset &amp; Properti</button>
+                    </div>
+                </div>
+
+                <div class="products-grid" id="homeProductsGrid">
+                    <!-- Products will be generated by JS dynamically -->
+                </div>
+
+                <div class="text-center mt-4">
+                    <button class="btn btn-outline" onclick="switchTab('catalog')">Lihat Semua Produk &amp; Layanan <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Interactive Testimonial Section -->
+            <div class="section-gray">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <span class="subtitle">TESTIMONI PELANGGAN</span>
+                        <h3>Apa Kata Mereka Tentang HappyGSR</h3>
+                    </div>
+
+                    <div class="testimonials-slider">
+                        <div class="testimonial-card">
+                            <div class="rating">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="quote">"Sangat puas beli laptop ex-kantor di HappyGSR. Kondisi Grade A mulus seperti baru, baterai awet, dan harganya jauh lebih murah dibanding toko lain. Pelayanan purna jualnya sangat responsif."</p>
+                            <div class="client-info">
+                                <div class="client-avatar"><i class="fa-solid fa-user-tie"></i></div>
+                                <div>
+                                    <h5>Budi Prasetyo</h5>
+                                    <span>Pemilik UKM Kopi, Jakarta</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div class="rating">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="quote">"Membuat website e-commerce di HappyGSR sangat cepat dan harganya terjangkau. Dapat bonus domain, hosting, dan diajarkan cara pakai sistem kasir POS-nya sampai bisa."</p>
+                            <div class="client-info">
+                                <div class="client-avatar"><i class="fa-solid fa-user-ninja"></i></div>
+                                <div>
+                                    <h5>Siti Aminah</h5>
+                                    <span>Online Shop Owner, Bandung</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB: CATALOG ================= -->
+        <section id="tab-catalog" class="tab-pane container">
+            <div class="catalog-layout">
+                <!-- Sidebar Filters -->
+                <aside class="catalog-sidebar">
+                    <div class="sidebar-widget">
+                        <h4>Kategori Produk</h4>
+                        <ul class="filter-list">
+                            <li><a href="#" class="active" onclick="filterCatalogItems('all', this)"><i class="fa-solid fa-tags"></i> Semua Layanan</a></li>
+                            <li><a href="#" onclick="filterCatalogItems('laptop-grosir', this)"><i class="fa-solid fa-laptop"></i> Laptop Harga Grosir</a></li>
+                            <li><a href="#" onclick="filterCatalogItems('laptop-new', this)"><i class="fa-solid fa-laptop-code"></i> Laptop / AIO New (Baru)</a></li>
+                            <li><a href="#" onclick="filterCatalogItems('cctv', this)"><i class="fa-solid fa-video"></i> Paket CCTV</a></li>
+                            <li><a href="#" onclick="filterCatalogItems('website', this)"><i class="fa-solid fa-globe"></i> Jasa Pembuatan Website</a></li>
+                            <li><a href="#" onclick="filterCatalogItems('property', this)"><i class="fa-solid fa-house-chimney-window"></i> GSR Property</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-widget">
+                        <h4>Filter Harga</h4>
+                        <div class="price-filter-inputs">
+                            <input type="number" id="minPriceFilter" placeholder="Min (Rp)" class="form-control" onchange="applyPriceFilter()">
+                            <input type="number" id="maxPriceFilter" placeholder="Max (Rp)" class="form-control" onchange="applyPriceFilter()">
+                        </div>
+                    </div>
+
+                    <div class="sidebar-widget bg-primary-soft promo-box-sidebar">
+                        <h4>Butuh Konsultasi?</h4>
+                        <p>Hubungi CS kami untuk mendapatkan penawaran grosir khusus perusahaan atau instansi.</p>
+                        <a href="https://wa.me/6282240299789" target="_blank" class="btn btn-primary btn-block"><i class="fa-brands fa-whatsapp"></i> Chat WhatsApp</a>
+                    </div>
+                </aside>
+
+                <!-- Product Catalog Listing -->
+                <div class="catalog-main">
+                    <div class="catalog-bar">
+                        <span class="catalog-count-text" id="catalogCountText">Menampilkan semua produk</span>
+                        <div class="catalog-sort">
+                            <label for="sortBy">Urutkan:</label>
+                            <select id="sortBy" class="form-control-sm" onchange="sortCatalogProducts()">
+                                <option value="default">Default</option>
+                                <option value="price-asc">Harga Terendah</option>
+                                <option value="price-desc">Harga Tertinggi</option>
+                                <option value="discount">Diskon Terbesar</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="products-grid" id="catalogProductsGrid">
+                        <!-- Catalog items will be injected by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB: MEMBER ================= -->
+        <section id="tab-member" class="tab-pane container">
+            <div class="auth-wrapper">
+                <div class="auth-tabs">
+                    <button class="auth-tab-btn active" onclick="switchAuthTab('login')">Masuk Akun</button>
+                    <button class="auth-tab-btn" onclick="switchAuthTab('register')">Daftar Gratis</button>
+                </div>
+
+                <!-- Form Login -->
+                <div class="auth-card" id="authLoginCard">
+                    <h3>Selamat Datang Kembali!</h3>
+                    <p class="auth-subtitle">Kelola komisi kemitraan, lacak pesanan, dan dapatkan diskon member.</p>
+                    
+                    <form onsubmit="handleLogin(event)">
+                        <div class="form-group">
+                            <label for="loginEmail">Email atau Nomor Whatsapp</label>
+                            <input type="text" id="loginEmail" class="form-control" placeholder="Contoh: 0822xxxxxxxx / admin@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" id="loginPassword" class="form-control" placeholder="Masukkan password Anda" required>
+                        </div>
+                        <div class="form-actions-row">
+                            <label class="checkbox-label">
+                                <input type="checkbox"> Ingat Saya
+                            </label>
+                            <a href="#" class="forgot-password">Lupa Password?</a>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Masuk ke Dashboard</button>
+                    </form>
+                </div>
+
+                <!-- Form Register -->
+                <div class="auth-card d-none" id="authRegisterCard">
+                    <h3>Daftar Member GSR Gratis</h3>
+                    <p class="auth-subtitle">Mulai bangun usaha mandiri Anda hari ini &amp; dapatkan komisi s.d 10%.</p>
+                    
+                    <form onsubmit="handleRegister(event)">
+                        <div class="form-group">
+                            <label for="regName">Nama Lengkap</label>
+                            <input type="text" id="regName" class="form-control" placeholder="Masukkan nama lengkap Anda" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regWa">Nomor Whatsapp Aktif</label>
+                            <input type="tel" id="regWa" class="form-control" placeholder="Contoh: 082240299789" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regEmail">Alamat Email</label>
+                            <input type="email" id="regEmail" class="form-control" placeholder="Contoh: nama@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regPass">Password Baru</label>
+                            <input type="password" id="regPass" class="form-control" placeholder="Minimal 6 karakter" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" required> Saya menyetujui <a href="#" onclick="switchTab('orders', 'refund')">Syarat &amp; Ketentuan Kemitraan GSR</a>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-accent btn-block">Daftar Sekarang (Gratis Selamanya)</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB: CART / CHECKOUT ================= -->
+        <section id="tab-cart" class="tab-pane container">
+            <div class="cart-page-layout">
+                <!-- Cart Items List -->
+                <div class="cart-main">
+                    <h3>Keranjang Belanja</h3>
+                    <div class="cart-table-wrapper">
+                        <table class="cart-table">
+                            <thead>
+                                <tr>
+                                    <th>Produk</th>
+                                    <th>Harga</th>
+                                    <th>Kuantitas</th>
+                                    <th>Total</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cartTableBody">
+                                <!-- Cart rows injected by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Checkout Summary & Checkout Form -->
+                <aside class="cart-summary">
+                    <div class="summary-card">
+                        <h3>Ringkasan Belanja</h3>
+                        <div class="summary-row">
+                            <span>Subtotal:</span>
+                            <strong id="cartSummarySubtotal">Rp0</strong>
+                        </div>
+                        <div class="summary-row">
+                            <span>Voucher Potongan:</span>
+                            <span class="text-success" id="cartSummaryDiscount">-Rp0</span>
+                        </div>
+                        <div class="summary-row promo-input-row">
+                            <input type="text" id="voucherInput" placeholder="Kode Voucher" class="form-control-sm">
+                            <button class="btn btn-secondary btn-sm" onclick="applyVoucher()">Gunakan</button>
+                        </div>
+                        <hr>
+                        <div class="summary-row total-row">
+                            <span>Total Pembayaran:</span>
+                            <strong id="cartSummaryTotal">Rp0</strong>
+                        </div>
+
+                        <!-- Checkout Billing & Shipping Form -->
+                        <div class="checkout-form mt-4">
+                            <h4>Form Pemesanan Cepat</h4>
+                            <div class="form-group">
+                                <label for="checkoutName">Nama Lengkap</label>
+                                <input type="text" id="checkoutName" class="form-control-sm form-control" placeholder="Nama Anda" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="checkoutPhone">Nomor WhatsApp</label>
+                                <input type="tel" id="checkoutPhone" class="form-control-sm form-control" placeholder="Contoh: 0822xxxxxxxx" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="checkoutAddress">Alamat Pengiriman Lengkap</label>
+                                <textarea id="checkoutAddress" class="form-control-sm form-control" rows="2" placeholder="Nama Jalan, RT/RW, Kecamatan, Kota, Kode Pos" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="checkoutCourier">Metode Pengiriman</label>
+                                <select id="checkoutCourier" class="form-control-sm form-control">
+                                    <option value="JNE">JNE Reguler (Asuransi Laptop)</option>
+                                    <option value="JNT">J&amp;T Express</option>
+                                    <option value="COD">COD Khusus Area Jakarta Barat</option>
+                                </select>
+                            </div>
+                            
+                            <button class="btn btn-accent btn-block mt-3" onclick="processCheckout()"><i class="fa-brands fa-whatsapp"></i> Selesaikan Pemesanan via WhatsApp</button>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- ================= TAB: ORDERS (TRACKING & REFUND) ================= -->
+        <section id="tab-orders" class="tab-pane container">
+            <div class="order-tools-grid">
+                <!-- Order Tracking / Cek Resi Widget -->
+                <div class="tool-card">
+                    <div class="tool-card-header">
+                        <i class="fa-solid fa-truck-fast"></i>
+                        <h3>Cek Status &amp; Resi Pengiriman</h3>
+                    </div>
+                    <p>Lacak pengiriman laptop atau produk Anda secara real-time dari kurir kami.</p>
+                    
+                    <div class="form-group mt-3">
+                        <label for="resiNumber">Nomor Resi / ID Pesanan:</label>
+                        <div class="input-group-row">
+                            <input type="text" id="resiNumber" class="form-control" placeholder="Masukkan nomor resi, contoh: GSR-7890">
+                            <button class="btn btn-primary" onclick="trackOrder()">Lacak</button>
+                        </div>
+                    </div>
+
+                    <div class="tracking-result-box d-none" id="trackingResult">
+                        <!-- Result dynamically injected -->
+                    </div>
+                </div>
+
+                <!-- Payment Confirmation Widget -->
+                <div class="tool-card">
+                    <div class="tool-card-header">
+                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                        <h3>Konfirmasi Pembayaran</h3>
+                    </div>
+                    <p>Unggah bukti transfer bank Anda untuk mempercepat proses verifikasi pesanan.</p>
+
+                    <form onsubmit="handlePaymentConfirm(event)" class="mt-3">
+                        <div class="form-group">
+                            <label for="confirmOrderId">ID Pesanan:</label>
+                            <input type="text" id="confirmOrderId" class="form-control" placeholder="Contoh: GSR-7890" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmSenderName">Nama Pemilik Rekening Pengirim:</label>
+                            <input type="text" id="confirmSenderName" class="form-control" placeholder="Contoh: Budi Prasetyo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmAmount">Jumlah Transfer (Rp):</label>
+                            <input type="number" id="confirmAmount" class="form-control" placeholder="Contoh: 1799045" required>
+                        </div>
+                        <button type="submit" class="btn btn-accent btn-block">Kirim Bukti Konfirmasi</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Refund Guidelines & Policies -->
+            <div class="refund-guidelines mt-5">
+                <div class="section-header">
+                    <h3>Kebijakan Pengembalian Dana &amp; Barang</h3>
+                </div>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <h4>Apakah ada garansi jika laptop diterima dalam keadaan rusak?</h4>
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Ya! PT GSR Bisnis Indonesia memberikan garansi penuh untuk setiap unit laptop baru maupun second Grade A. Jika barang diterima rusak fisik atau mati akibat pengiriman, kami akan mengganti unit dengan yang baru / setara, atau mengembalikan dana 100% dengan syarat mengirimkan video unboxing paket dalam 1x24 jam.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <h4>Berapa lama masa garansi laptop di HappyGSR?</h4>
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Masa garansi bervariasi bergantung pada kategori produk:</p>
+                            <ul>
+                                <li>Laptop Second Grade A: Garansi Toko 1 Bulan (Hardware &amp; Service)</li>
+                                <li>Laptop Brand New (DST, HP, Dell): Garansi Resmi Distributor 1 Tahun</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB: TOOLS (ONGKIR & CALCULATORS) ================= -->
+        <section id="tab-tools" class="tab-pane container">
+            <div class="tool-card max-width-600 margin-auto">
+                <div class="tool-card-header">
+                    <i class="fa-solid fa-calculator"></i>
+                    <h3>Cek Estimasi Ongkos Kirim</h3>
+                </div>
+                <p>Gunakan simulasi pengiriman cepat dari Jakarta Barat ke seluruh kota di Indonesia.</p>
+
+                <div class="form-group mt-3">
+                    <label for="ongkirDestination">Kota Tujuan Pengiriman:</label>
+                    <select id="ongkirDestination" class="form-control">
+                        <option value="15000">Bandung - Jawa Barat (Estimasi 1-2 hari)</option>
+                        <option value="20000">Semarang - Jawa Tengah (Estimasi 2-3 hari)</option>
+                        <option value="25000">Surabaya - Jawa Timur (Estimasi 2-3 hari)</option>
+                        <option value="35000">Medan - Sumatera Utara (Estimasi 3-4 hari)</option>
+                        <option value="45000">Makassar - Sulawesi Selatan (Estimasi 3-5 hari)</option>
+                        <option value="0">Jakarta Barat - COD (Gratis Ongkir!)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="ongkirWeight">Berat Paket (Gram):</label>
+                    <input type="number" id="ongkirWeight" class="form-control" value="3000" placeholder="Berat dalam gram (rata-rata laptop 3000g)">
+                </div>
+                <button class="btn btn-primary btn-block" onclick="checkOngkir()">Hitung Estimasi Ongkir</button>
+
+                <div class="ongkir-result-box d-none mt-3" id="ongkirResult">
+                    <!-- Result dynamically injected -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB: ABOUT ================= -->
+        <section id="tab-about" class="tab-pane container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2>Tentang PT GSR Bisnis Indonesia</h2>
+                    <p>Didirikan atas visi mulia untuk menjadi mercusuar kejujuran di industri laptop e-commerce Indonesia, HappyGSR lahir dari keprihatinan pendiri kami terhadap maraknya penipuan produk laptop palsu/rusak ex-import ilegal di pasaran.</p>
+                    <p>Kami memiliki komitmen penuh untuk memberikan hanya unit laptop pilihan yang telah melalui proses <strong>QC (Quality Control) 21 Tahapan</strong> yang ketat. Dengan operasional terpusat di Jakarta, kami terus berkembang memperluas layanan hingga pemasangan CCTV profesional, sistem POS, pembuatan website custom, serta investasi properti strategis.</p>
+                    
+                    <div class="milestones mt-4">
+                        <div class="milestone-item">
+                            <span class="m-num">10k+</span>
+                            <span class="m-label">Laptop Terjual</span>
+                        </div>
+                        <div class="milestone-item">
+                            <span class="m-num">500+</span>
+                            <span class="m-label">Mitra Reseller</span>
+                        </div>
+                        <div class="milestone-item">
+                            <span class="m-num">98%</span>
+                            <span class="m-label">Rating Kepuasan</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=600" alt="GSR Office" class="img-responsive rounded shadow">
+                    <div class="office-address mt-3">
+                        <h4>Lokasi Pusat &amp; Showroom:</h4>
+                        <p><i class="fa-solid fa-location-dot"></i> Ruko GSR Business, Jalan Daan Mogot, Jakarta Barat, Indonesia</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB: TOKEN ================= -->
+        <section id="tab-token" class="tab-pane container">
+            <div class="token-hero">
+                <div class="token-hero-content">
+                    <span class="badge badge-accent">LOYALTY TOKEN</span>
+                    <h2>HappyGSR Token (GSR Token)</h2>
+                    <p>Aset loyalitas digital inovatif untuk pelanggan setia kami. Dapatkan token GSR secara gratis pada setiap transaksi laptop, jasa pembuatan website, atau CCTV, dan gunakan untuk potongan belanja langsung atau tukar hadiah eksklusif.</p>
+                    <div class="token-stats mt-4">
+                        <div class="stat-box">
+                            <span>Nilai Tukar Saat Ini:</span>
+                            <strong>1 GSR = Rp1.000</strong>
+                        </div>
+                        <div class="stat-box">
+                            <span>Akumulasi Token Beredar:</span>
+                            <strong>142.500 GSR</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="token-visual">
+                    <div class="3d-coin">
+                        <i class="fa-solid fa-coins token-gold-icon"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="token-benefits mt-5">
+                <div class="section-header text-center">
+                    <h3>Bagaimana Cara Mendapatkan GSR Token?</h3>
+                </div>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <h4>Setiap Pembelian Laptop</h4>
+                        <p>Dapatkan 10 s.d 50 GSR Token secara otomatis ke dalam akun member Anda setiap bertransaksi produk laptop Grade A.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fa-solid fa-share-nodes"></i>
+                        <h4>Afiliasi &amp; Referral</h4>
+                        <p>Dapatkan bonus 5 GSR Token ekstra ketika Anda berhasil mengajak teman mendaftar sebagai Member GSR menggunakan tautan referral unik Anda.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fa-solid fa-star"></i>
+                        <h4>Ulasan &amp; Testimonial</h4>
+                        <p>Kirimkan testimoni ulasan bintang 5 beserta video bukti unit laptop Anda untuk mendapatkan cashback instan berupa GSR Token.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- WhatsApp Floating Quick Support -->
+    <a href="https://wa.me/6282240299789" class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span class="tooltip">Tanya CS (Grosir/Mitra)</span>
+    </a>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-about">
+                <span class="logo-accent">Happy</span>GSR
+                <p class="mt-3">Pusat Grosir Laptop terpercaya, penyedia layanan sistem CCTV keamanan digital, pembuatan aplikasi website instansi/bisnis, dan investasi properti cerdas di bawah bimbingan PT GSR Bisnis Indonesia.</p>
+                <div class="social-links mt-3">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Katalog Terpopuler</h4>
+                <ul>
+                    <li><a href="#" onclick="filterCatalog('laptop')">Laptop 1 Jutaan</a></li>
+                    <li><a href="#" onclick="filterCatalog('laptop')">Laptop 2 Jutaan</a></li>
+                    <li><a href="#" onclick="filterCatalog('laptop')">Laptop SultanGSR</a></li>
+                    <li><a href="#" onclick="filterCatalog('cctv')">Paket CCTV Rumah</a></li>
+                    <li><a href="#" onclick="filterCatalog('website')">Web Online Shop</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Layanan Pelanggan</h4>
+                <ul>
+                    <li><a href="#" onclick="switchTab('orders', 'tracking')">Lacak Status Resi</a></li>
+                    <li><a href="#" onclick="switchTab('orders', 'payment')">Konfirmasi Transfer</a></li>
+                    <li><a href="#" onclick="switchTab('orders', 'refund')">Kebijakan Garansi</a></li>
+                    <li><a href="#" onclick="switchTab('tools', 'ongkir')">Simulasi Ongkos Kirim</a></li>
+                    <li><a href="#" onclick="switchTab('about')">Hubungi Hub Kami</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Alamat Kantor Pusat</h4>
+                <p><i class="fa-solid fa-location-dot"></i> Ruko GSR Business, Jl. Daan Mogot Raya, Jakarta Barat, DKI Jakarta, Indonesia</p>
+                <p class="mt-2"><i class="fa-solid fa-phone"></i> 021-23095662</p>
+                <p class="mt-1"><i class="fa-solid fa-envelope"></i> support@happygsr.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; 2026 PT GSR BISNIS INDONESIA. Hak Cipta Dilindungi. Dibuat dengan cinta untuk Indonesia Maju.</p>
+        </div>
+    </footer>
+
+    <!-- Custom Script File -->
+    <script src="app.js"></script>
+</body>
+</html>
